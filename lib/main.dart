@@ -86,7 +86,7 @@ class _SqfLiteCrudState extends State<SqfLiteCrud> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Name: ${daytasklist.name}',
+              '${daytasklist.name}',
               style: TextStyle(fontSize: 24),
             ),
             Text(
@@ -124,19 +124,25 @@ class _SqfLiteCrudState extends State<SqfLiteCrud> {
       //expands: true,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0), ),
-        hintText: 'Name',
+        labelText: 'Name',
         fillColor: Colors.green.shade100,
         filled: true,
 
       ),
       textAlign: TextAlign.start,
-      // ignore: missing_return
+     /* ignore: missing_return
       validator: (value) {
         if (value.isEmpty) {
           return 'Please enter name of the task';
         }
       },
-      onSaved: (value) => name = value,
+      */
+      onSaved: (value) => {
+        if(value.isEmpty)
+          name=('Task#'+"")
+        else name = value,
+      }
+
     );
   }
 
@@ -149,7 +155,7 @@ class _SqfLiteCrudState extends State<SqfLiteCrud> {
       expands: true,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),  ),
-        hintText: 'Day Task',
+        labelText: 'Task',
         fillColor: Colors.blue.shade100,
         //hoverColor: Colors.green.shade100,
         filled: true,
@@ -194,7 +200,7 @@ class _SqfLiteCrudState extends State<SqfLiteCrud> {
       ),
       body: ListView(
         padding: EdgeInsets.all(8),
-        children: <Widget>[
+      children: <Widget>[
           Form(
             key: _formKey,
             child:Column(
@@ -202,6 +208,7 @@ class _SqfLiteCrudState extends State<SqfLiteCrud> {
                 //buildTextFormField(),
                // SizedBox(height: 10,),
                 //buildTextFormField2(),
+
                 SizedBox(height: 80,child: buildTextFormField(),),
                 SizedBox(height: 10,),
                 SizedBox(height: 150,child: buildTextFormField2(),),
